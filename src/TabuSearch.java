@@ -1,10 +1,9 @@
 public class TabuSearch {
 
-    private TabuList tabuList;
     private final Matrix matrix;
 
 
-
+    int [][] tabuList;
     int[] currSolution;
     int numberOfIterations;
     int problemSize;
@@ -12,12 +11,26 @@ public class TabuSearch {
     private int[] bestSolution;
     private int bestCost;
 
+    public void tabuMove(int city1, int city2, int[][]tabuList){ //tabus the swap operation
+        tabuList[city1][city2]+= 150;
+        tabuList[city2][city1]+= 150;
+
+    }
+
+    public void decrementTabu(int [][]tabuList){
+        for(int i = 0; i<tabuList.length; i++){
+            for(int j = 0; j<tabuList.length; j++){
+                tabuList[i][j]-=tabuList[i][j]<=0?0:1;
+            }
+        }
+    }
+
     public TabuSearch(Matrix matrix) {
         this.matrix = matrix;
         problemSize = matrix.getEdgeCount();
         numberOfIterations = problemSize * 100000;
 
-        tabuList = new TabuList(problemSize);
+        tabuList = new int[problemSize][problemSize];
         setupCurrentSolution();
         setupBestSolution();
 
@@ -87,7 +100,7 @@ public class TabuSearch {
                     if (j != k) {
                         swap(j, k);
                         int currCost = matrix.calculateDistance(currSolution);
-                        if ((currCost < bestCost) && tabuList.tabuList[j][k] == 0) {
+                        if ((currCost < bestCost) && tabuList[j][k] == 0) {
                             city1 = j;
                             city2 = k;
                             System.arraycopy(currSolution, 0, bestSolution, 0, bestSolution.length);
@@ -102,8 +115,8 @@ public class TabuSearch {
 
 
             if (city1 != 0) {
-                tabuList.decrementTabu();
-                tabuList.tabuMove(city1, city2);
+                decrementTabu(tabuList);
+                tabuMove(city1, city2,tabuList);
             }
         }
 
