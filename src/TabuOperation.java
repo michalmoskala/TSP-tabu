@@ -1,4 +1,4 @@
-public class TabuSearch implements Runnable {
+public class TabuOperation implements Runnable {
 
     private Query query;
 
@@ -11,7 +11,7 @@ public class TabuSearch implements Runnable {
     private int tabuSize;
     private int multiplication;
 
-    public TabuSearch(int multiplication, int tabuSize, int[][] tab) {
+    public TabuOperation(int multiplication, int tabuSize, int[][] tab) {
         setupCurrentSolution(tab, tabuSize);
         this.tabuSize = tabuSize;
         this.multiplication = multiplication;

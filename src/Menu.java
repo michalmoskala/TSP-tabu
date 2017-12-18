@@ -1,9 +1,9 @@
 public class Menu {
-    static TabuSearch tabuSearch;
+    static TabuOperation tabuOperation;
     static Thread t2;
 
     public static void getData(){
-        tabuSearch.getData();
+        tabuOperation.getData();
 
     }
 
@@ -33,29 +33,37 @@ public class Menu {
 
         int m[][]=random(randomSize);
 
-        tabuSearch = new TabuSearch(multiplication,tabuSize,m);
+
+        tabuOperation = new TabuOperation(multiplication,tabuSize,m);
 
         Timer timer=new Timer(timeLimit);
         Thread t=new Thread(timer);
         t.start();
 
-        t2=new Thread(tabuSearch);
+        t2=new Thread(tabuOperation);
 
         t2.start();
-
-
-
 
     }
     private static int[][] random(int size) {
         int[][]matrix=new int[size][size];
+
         java.util.Random random = new java.util.Random();
+
         for (int row = 0; row < size; row++) {
+
             for (int col = 0; col < size; col++) {
+
                 if (row != col) {
-                    int value = random.nextInt(100) + 1;
+
+                    int value = random.nextInt(80) + 1;
                     matrix[row][col] = value;
                     matrix[col][row] = value;
+                }
+                else
+                {
+                    matrix[row][col] = 0;
+                    matrix[col][row] = 0;
                 }
             }
         }
