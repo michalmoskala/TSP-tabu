@@ -33,6 +33,7 @@ public class Menu {
 
         int m[][]=random(randomSize);
 
+        int n[][]= FromFile.main("data.txt");
 
         tabuOperation = new TabuOperation(multiplication,tabuSize,m);
 

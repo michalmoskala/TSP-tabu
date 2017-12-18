@@ -18,6 +18,9 @@ public class TabuOperation implements Runnable {
     }
 
     public void getData() {
+
+        System.out.println("Przerwano ze względu na interupcję kryterium stopu");
+
         Boolean next = false;
 
         for (int aSolution : bestPath) {
