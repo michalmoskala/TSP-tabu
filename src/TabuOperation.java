@@ -19,7 +19,6 @@ public class TabuOperation implements Runnable {
 
     public void getData() {
 
-        System.out.println("Przerwano ze względu na interupcję kryterium stopu");
 
         Boolean next = false;
 
@@ -68,11 +67,13 @@ public class TabuOperation implements Runnable {
         float a;
         float shortpath;
 
-//        for(;t<Size;t++)
-//            path[t]=t;
+        if (setup==0) {
+            for (; t < Size; t++)
+                path[t] = t;
+        }
 
 
-
+        else{
         for (int i = 1; i < Size; i++) {
 
             shortpath = 1000000;
@@ -88,10 +89,11 @@ public class TabuOperation implements Runnable {
                     if (!contains) {
                         shortpath = a;
                         t = j;
+                        }
                     }
-                }
                 path[i] = t;
 
+                }
             }
         }
 
@@ -113,7 +115,7 @@ public class TabuOperation implements Runnable {
         int temp;
 
         System.out.println(query.getObjectiveValue(path));
-        for (int i = 0; i < Size * multiplication; i++) {
+        for (int i = 0; i <  multiplication; i++) {
             int from = 0;
             int to = 0;
 

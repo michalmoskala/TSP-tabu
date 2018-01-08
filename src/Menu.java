@@ -1,21 +1,21 @@
 import java.util.Scanner;
 
 
-public class Menu {
-    static TabuOperation tabuOperation;
+class Menu {
+    private static TabuOperation tabuOperation;
     static Thread t2;
 
-    public static void getData(){
+    static void getData(){
         tabuOperation.getData();
 
     }
 
-    public static void main() {
+    static void main() {
 
 
         Scanner sc=new Scanner(System.in);
 
-        System.out.println("Podaj wielokrotnosc iteracji (np 10000)");
+        System.out.println("Podaj ilosc iteracji (np 100000)");
         int num=sc.nextInt();
         final int multiplication=num;
 
@@ -23,9 +23,13 @@ public class Menu {
         num=sc.nextInt();
         final int tabuSize=num;
 
-        System.out.println("Podaj czasowe kryterium stopu (np 10s)");
+        System.out.println("Podaj co ile ms podawac najlepszy wynik (np 1000)");
         num=sc.nextInt();
         final int timeLimit=num;
+
+        System.out.println("Wybierz sposob generowania rozwiazania poczatkowego( 1-zachlanny,0-quasilosowy)");
+        num=sc.nextInt();
+        final int setup=num;
 
 
         System.out.println("Podaj tryb dzialania\n1-macierz hardkodowana\n2-macierz losowa\n3-wczytanie z pliku");
@@ -61,9 +65,8 @@ public class Menu {
         else
         k=FromXMLfile.getAllUserNames("c:\\pea/u1432.xml");
 
-//        k= FromFile.main("data.txt");
 
-        tabuOperation = new TabuOperation(multiplication,tabuSize,k,0);
+        tabuOperation = new TabuOperation(multiplication,tabuSize,k,setup);
 
         Timer timer=new Timer(timeLimit);
         Thread t=new Thread(timer);

@@ -1,4 +1,4 @@
-public class Query {
+class Query {
 
     float[][] matrix;
 

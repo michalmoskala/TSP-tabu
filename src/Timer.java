@@ -1,8 +1,7 @@
 public class Timer implements Runnable {
-    int time=0;
-    int limit;
+    private int limit;
 
-    public Timer(int limit){
+    Timer(int limit){
 
         this.limit=limit;
 
@@ -11,13 +10,11 @@ public class Timer implements Runnable {
     public void run(){
         while (true) {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(limit);
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            time++;
-            //if (time==limit)
                 Menu.getData();
         }
         }
