@@ -31,9 +31,9 @@ public class Menu {
         System.out.println("Podaj tryb dzialania\n1-macierz hardkodowana\n2-macierz losowa\n3-wczytanie z pliku");
         num=sc.nextInt();
         final int mode=num;
-        int [][]k;
+        float [][]k;
         if (mode==1)
-        k=new int [][]{{0,3,5,48,48,8,8,5,5,3,3,0,3,5,8,8,5},
+        k=new float [][]{{0,3,5,48,48,8,8,5,5,3,3,0,3,5,8,8,5},
                 {3,0,3,48,48,8,8,5,5,0,0,3,0,3,8,8,5},
                 {5,3,0,72,72,48,48,24,24,3,3,5,3,0,48,48,24},
                 {48,48,74,0,0,6,6,12,12,48,48,48,48,74,6,6,12},
@@ -59,11 +59,11 @@ public class Menu {
 
         }
         else
-        k=FromXMLfile.getAllUserNames("c:\\pea/pcb1173.xml");
+        k=FromXMLfile.getAllUserNames("c:\\pea/u1432.xml");
 
 //        k= FromFile.main("data.txt");
 
-        tabuOperation = new TabuOperation(multiplication,tabuSize,k);
+        tabuOperation = new TabuOperation(multiplication,tabuSize,k,0);
 
         Timer timer=new Timer(timeLimit);
         Thread t=new Thread(timer);
@@ -74,8 +74,8 @@ public class Menu {
         t2.start();
 
     }
-    private static int[][] random(int size) {
-        int[][]matrix=new int[size][size];
+    private static float[][] random(int size) {
+        float[][]matrix=new float[size][size];
 
         java.util.Random random = new java.util.Random();
 

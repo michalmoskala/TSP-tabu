@@ -10,8 +10,8 @@ import org.w3c.dom.NodeList;
 
 class FromXMLfile {
 
-    static int[][] getAllUserNames(String fileName) {
-        int [][]k;
+    static float[][] getAllUserNames(String fileName) {
+        float [][]k;
 
         try {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -23,7 +23,7 @@ class FromXMLfile {
 
 
                 NodeList vertices = docEle.getElementsByTagName("vertex");
-                k=new int[vertices.getLength()][vertices.getLength()];
+                k=new float[vertices.getLength()][vertices.getLength()];
                 String c;
                 if (vertices.getLength() > 0) {
                     for (int i = 0; i < vertices.getLength(); i++) {
@@ -38,7 +38,7 @@ class FromXMLfile {
 
                             for (int j=0;j<vertices.getLength()-1;j++) {
                                 c = nodeList.item(j).getAttributes().getNamedItem("cost").getNodeValue();
-                                int val = new BigDecimal(c).intValue();
+                                float val = new BigDecimal(c).floatValue();
                                 if (j>=i)
                                     k[i][j+1]=val;
 

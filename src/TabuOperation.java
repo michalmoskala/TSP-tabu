@@ -7,12 +7,12 @@ public class TabuOperation implements Runnable {
     private int[] bestPath;
 
     private int Size;
-    private int lowestCost;
+    private float lowestCost;
     private int tabuSize;
     private int multiplication;
 
-    public TabuOperation(int multiplication, int tabuSize, int[][] tab) {
-        setupCurrentSolution(tab, tabuSize);
+    public TabuOperation(int multiplication, int tabuSize, float[][] tab,int setup) {
+        setupCurrentSolution(tab, tabuSize,setup);
         this.tabuSize = tabuSize;
         this.multiplication = multiplication;
     }
@@ -32,6 +32,7 @@ public class TabuOperation implements Runnable {
             }
         }
         System.out.println("\n" + "Dlugosc drogi:" + lowestCost);
+        System.out.println(lowestCost);
 
 
         Menu.t2.interrupt();
@@ -50,7 +51,7 @@ public class TabuOperation implements Runnable {
 
     }
 
-    private void setupCurrentSolution(int[][] tab, int tabuSize) {
+    private void setupCurrentSolution(float[][] tab, int tabuSize,int setup) {
 
         this.query = new Query(tab);
         this.tabuSize = tabuSize;
@@ -64,11 +65,17 @@ public class TabuOperation implements Runnable {
 
         Boolean contains;
         int t = 0;
-        int a;
-        int shortpath;
+        float a;
+        float shortpath;
+
+//        for(;t<Size;t++)
+//            path[t]=t;
+
+
+
         for (int i = 1; i < Size; i++) {
 
-            shortpath = 10000;
+            shortpath = 1000000;
             for (int j = 1; j < Size; j++) {
                 a = query.getWeight(path[i - 1], j);
                 if (a < shortpath && a > 0) {
@@ -87,6 +94,7 @@ public class TabuOperation implements Runnable {
 
             }
         }
+
 
         bestPath = new int[Size + 1];
 
@@ -116,7 +124,7 @@ public class TabuOperation implements Runnable {
                         temp = path[j];
                         path[j] = path[k];
                         path[k] = temp;
-                        int currCost = query.getObjectiveValue(path);
+                        float currCost = query.getObjectiveValue(path);
 
 
                         if ((currCost < lowestCost) && tabuList[j][k] == 0) {

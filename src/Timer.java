@@ -17,7 +17,7 @@ public class Timer implements Runnable {
             }
 
             time++;
-            if (time==limit)
+            //if (time==limit)
                 Menu.getData();
         }
         }
