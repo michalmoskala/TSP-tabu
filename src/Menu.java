@@ -4,9 +4,13 @@ import java.util.Scanner;
 class Menu {
     private static TabuOperation tabuOperation;
     static Thread t2;
+    private static GeneticAlgo ga;
 
     static void getData(){
         tabuOperation.getData();
+        ga.printBestResult();
+
+
 
     }
 
@@ -15,25 +19,25 @@ class Menu {
 
         Scanner sc=new Scanner(System.in);
 
-        System.out.println("Podaj ilosc iteracji (np 100000)");
-        int num=sc.nextInt();
-        final int multiplication=num;
-
-        System.out.println("Podaj kadencje(np 100)");
-        num=sc.nextInt();
-        final int tabuSize=num;
-
-        System.out.println("Podaj co ile ms podawac najlepszy wynik (np 1000)");
-        num=sc.nextInt();
-        final int timeLimit=num;
-
-        System.out.println("Wybierz sposob generowania rozwiazania poczatkowego( 1-zachlanny,0-quasilosowy)");
-        num=sc.nextInt();
-        final int setup=num;
+//        System.out.println("Podaj ilosc iteracji (np 100000)");
+//        int num=sc.nextInt();
+//        final int multiplication=num;
+//
+//        System.out.println("Podaj kadencje(np 100)");
+//        num=sc.nextInt();
+//        final int tabuSize=num;
+//
+//        System.out.println("Podaj co ile ms podawac najlepszy wynik (np 1000)");
+//        num=sc.nextInt();
+//        final int timeLimit=num;
+//
+//        System.out.println("Wybierz sposob generowania rozwiazania poczatkowego( 1-zachlanny,0-quasilosowy)");
+//        num=sc.nextInt();
+//        final int setup=num;
 
 
         System.out.println("Podaj tryb dzialania\n1-macierz hardkodowana\n2-macierz losowa\n3-wczytanie z pliku");
-        num=sc.nextInt();
+        int num=sc.nextInt();
         final int mode=num;
         float [][]k;
         if (mode==1)
@@ -55,22 +59,24 @@ class Menu {
                 {8,8,50,6,6,0,0,8,8,8,8,8,8,50,0,0,8},
                 {5,5,26,12,12,8,8,0,0,5,5,5,5,26,8,8,0}};
 
-        else if (mode==2) {
-            System.out.println("Podaj rozmiar");
-            num=sc.nextInt();
-            final int randomSize=num;
-            k = random(randomSize);
-
-        }
+//        else if (mode==2) {
+//            System.out.println("Podaj rozmiar");
+//            num=sc.nextInt();
+//            final int randomSize=num;
+//            k = random(randomSize);
+//
+//        }
         else
-       // k=FromXMLfile.getAllUserNames("c:\\pea/u1432.xml");
+        k=FromXMLfile.getAllUserNames("c:\\pea/bays29.xml");
 
 
-       // tabuOperation = new TabuOperation(multiplication,tabuSize,k,setup);
+        //tabuOperation = new TabuOperation(multiplication,tabuSize,k,setup);
+        ga=new GeneticAlgo(k,1000,500,(float)0.01,(float)0.8);
 
-        //Timer timer=new Timer(timeLimit);
-        //Thread t=new Thread(timer);
-      //  t.start();
+
+        Timer timer=new Timer(1000);
+        Thread t=new Thread(timer);
+        t.start();
 
         t2=new Thread(tabuOperation);
 
