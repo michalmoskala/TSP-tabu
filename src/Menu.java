@@ -63,14 +63,14 @@ class Menu {
 
         }
         else
-        k=FromXMLfile.getAllUserNames("c:\\pea/u1432.xml");
+       // k=FromXMLfile.getAllUserNames("c:\\pea/u1432.xml");
 
 
-        tabuOperation = new TabuOperation(multiplication,tabuSize,k,setup);
+       // tabuOperation = new TabuOperation(multiplication,tabuSize,k,setup);
 
-        Timer timer=new Timer(timeLimit);
-        Thread t=new Thread(timer);
-        t.start();
+        //Timer timer=new Timer(timeLimit);
+        //Thread t=new Thread(timer);
+      //  t.start();
 
         t2=new Thread(tabuOperation);
 
